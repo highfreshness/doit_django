@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import PostList, PostDetail
 
 urlpatterns = [
-    path('', views.index, name='index'), 
-    path('<int:pk>/', views.single_post_page, name="post_detail"),
+    # path('', views.index, name='index'), # FBV 방식의 call
+    path('', PostList.as_view(), name='post_list'),
+    path('<int:pk>/', PostDetail.as_view(), name="post_detail"),
 ]
