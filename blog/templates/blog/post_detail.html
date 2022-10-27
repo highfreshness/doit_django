@@ -67,12 +67,18 @@
                         <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                     </header>
                     <!-- Preview image figure-->
-                    <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.head_image.url}}" alt="..." />
+                    {% if post.head_image %}
+                    <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.head_image.url}}"
+                            alt="{{ post.title }} head_image" />
                     </figure>
-                    <!-- Post content-->
-                    <section class="mb-5">
-                        <p class="fs-5 mb-4">{{post.content}}</p>
-                    </section>
+                    {% else %}
+                    <figure class="mb-4"><img class="img-fluid rounded"
+                            src="https://picsum.photos/seed/{{post.pk}}/800/200" alt="random_image" />
+                        {% endif %}
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4">{{post.content}}</p>
+                        </section>
                 </article>
                 <!-- Comments section-->
                 <section class="mb-5">
