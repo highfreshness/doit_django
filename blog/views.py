@@ -23,3 +23,8 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
+    
+
+def articleList(request):
+    article_list = Post.objects.all()
+    return render(request, 'navbar.html', {'article_list' : article_list})

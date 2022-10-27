@@ -22,8 +22,8 @@
                         Dropdown link
                     </a>
                     <div class="dropdown-menu">
-                        {% for p in post_list %}
-                        <a class="dropdown-item" href="{{p.get_absolute_url}}">{{p.title}}</a>
+                        {% for article in article_list %}
+                        <a class="dropdown-item" href="{{article.get_absolute_url}}">{{article.title}}</a>
                         {% endfor %}
                     </div>
                 </li>
