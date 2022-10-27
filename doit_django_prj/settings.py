@@ -10,18 +10,30 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import json
 from pathlib import Path
+from typing import Optional
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+def get_secret(key:str, default_value:Optional[str] =None, json_path:str=str(BASE_DIR / "secrets.json")):
+    with open(json_path) as f:
+        secrets = json.loads(f.read())
+    try:
+        return secrets[key]
+    except KeyError:
+        if default_value:
+            return default_value
+        raise EnvironmentError(f"Set the {key} environment variable.")
+        
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^nwbg1esf!5yn3b-xzxpl%=llq1yzq!3z6_jz&su6r$2wj#f-d'
 
+DJANGO_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = DJANGO_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

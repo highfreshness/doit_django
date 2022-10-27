@@ -130,3 +130,6 @@ dmypy.json
 
 # Pycharm
 migrations/
+
+# Secret_key
+secrets.json
