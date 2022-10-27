@@ -5,3 +5,7 @@ body {
 div.mt-5{
     margin-top: 50px;
 }
+
+div.card-body {
+    margin-top: 50px;
+}
